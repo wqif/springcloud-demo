@@ -1,0 +1,14 @@
+version: '3.2'
+services:
+  consul:
+    restart: always
+    image: consul:1.8.10
+    container_name: consul
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - ./data:/consul/data
+    ports:
+      - 8500:8500
+
+
