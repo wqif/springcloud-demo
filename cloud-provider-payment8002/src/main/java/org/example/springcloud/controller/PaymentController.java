@@ -38,4 +38,9 @@ public class PaymentController {
         log.info("查询结果:" + payment);
         return new CommonResult(0, String.format("success(port:%s)", serverPort), payment);
     }
+
+    @GetMapping("/lb")
+    public String getPaymentLb() {
+        return serverPort;
+    }
 }
