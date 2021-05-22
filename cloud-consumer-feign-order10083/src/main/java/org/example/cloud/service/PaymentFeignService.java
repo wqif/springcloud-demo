@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
  * @date 2021/5/22 10:56:12
  */
 @Service
-@FeignClient(value = "CLOUD-PAYMENT-SERVICE", path = "/payment")
+@FeignClient(value = "CLOUD-PAYMENT-SERVICE", path = "/payment", contextId = "aaa")
 public interface PaymentFeignService {
 
     @GetMapping("/get/{id}")

@@ -6,9 +6,15 @@ eureka:
     register-with-eureka: false
     service-url:
       defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/ # 入驻地址
+
+# 当前为最新GA版，网上暂未找到相关资料配置连接超时等信息，官网也只是提了connectTimeout、readTimeout两个参数并未给出例子，通过查看配置源码调试得出以下用法
 feign:
   client:
     config:
-      default:
-        connect-timeout: 5000 # 设置请求连接超时时间10s，默认为一直阻塞
-        read-timeout: 5000 # 设置请求处理超时时间5s，默认为一直阻塞
+      #      default: # 设置全局
+      #        connectTimeout: 5000 # 设置请求连接超时时间10s，默认为一直阻塞
+      #        readTimeout: 5000 # 设置请求处理超时时间5s，默认为一直阻塞
+      aaa: # 自定义名称，在对应的@FeignClient注解配置contextId为该名称，可用于局部设置
+        #        logger-level:
+        connectTimeout: 5000 # 设置请求连接超时时间10s，默认为一直阻塞
+        readTimeout: 5000 # 设置请求处理超时时间5s，默认为一直阻塞
