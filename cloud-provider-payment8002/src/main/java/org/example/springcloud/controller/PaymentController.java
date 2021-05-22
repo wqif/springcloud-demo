@@ -1,13 +1,14 @@
 package org.example.springcloud.controller;
 
+import lombok.extern.slf4j.Slf4j;
 import org.example.spirngcloud.entities.CommonResult;
 import org.example.spirngcloud.entities.Payment;
 import org.example.springcloud.service.PaymentService;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author wenqifeng
@@ -41,6 +42,16 @@ public class PaymentController {
 
     @GetMapping("/lb")
     public String getPaymentLb() {
+        return serverPort;
+    }
+
+    @GetMapping("/feign/timeout")
+    public String paymentFeignTimeout() {
+        try {
+            TimeUnit.SECONDS.sleep(3);
+        } catch (InterruptedException ignore) {
+
+        }
         return serverPort;
     }
 }

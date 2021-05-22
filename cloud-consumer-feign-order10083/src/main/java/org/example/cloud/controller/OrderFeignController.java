@@ -15,7 +15,7 @@ import javax.annotation.Resource;
  * @date 2021/5/22 11:02:46
  */
 @RestController
-@RequestMapping("/payment")
+@RequestMapping("/consumer/payment")
 public class OrderFeignController {
     @Resource
     private PaymentFeignService paymentFeignService;
@@ -24,4 +24,10 @@ public class OrderFeignController {
     public CommonResult<Payment> getPaymentById(@PathVariable Long id) {
         return paymentFeignService.getPaymentById(id);
     }
+
+    @GetMapping("/feign/timeout")
+    public String paymentFeignTimeout() {
+        return paymentFeignService.paymentFeignTimeout();
+    }
+
 }
