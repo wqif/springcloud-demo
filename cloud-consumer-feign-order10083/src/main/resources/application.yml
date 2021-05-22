@@ -15,6 +15,10 @@ feign:
       #        connectTimeout: 5000 # 设置请求连接超时时间10s，默认为一直阻塞
       #        readTimeout: 5000 # 设置请求处理超时时间5s，默认为一直阻塞
       aaa: # 自定义名称，在对应的@FeignClient注解配置contextId为该名称，可用于局部设置
-        #        logger-level:
         connectTimeout: 5000 # 设置请求连接超时时间10s，默认为一直阻塞
         readTimeout: 5000 # 设置请求处理超时时间5s，默认为一直阻塞
+        loggerLevel: full
+
+logging:
+  level:
+    org.example.cloud.service.PaymentFeignService: debug
