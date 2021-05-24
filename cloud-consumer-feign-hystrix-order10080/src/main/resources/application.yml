@@ -1,0 +1,17 @@
+server:
+  port: 10080
+
+eureka:
+  client:
+    register-with-eureka: false
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka/
+
+feign:
+  client:
+    config:
+      default: # 设置全局
+        connectTimeout: 3000 # 设置请求连接超时时间10s，默认为一直阻塞
+        readTimeout: 3000 # 设置请求处理超时时间5s，默认为一直阻塞
+  hystrix:
+    enabled: true
