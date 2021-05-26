@@ -1,0 +1,9 @@
+server:
+  port: 9001
+
+# 不加白名单无访问  站点报错 Unable to connect to Command Metric Stream.
+hystrix:
+  dashboard:
+    proxy-stream-allow-list:
+      - "localhost"
+      - "127.0.0.1"
