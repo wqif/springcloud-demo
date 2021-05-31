@@ -1,0 +1,12 @@
+version: '3.2'
+services:
+  zipkin:
+    image: openzipkin/zipkin:2.23
+    restart: always
+    ports:
+      - "9411:9411"
+    container_name: zipkin
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      

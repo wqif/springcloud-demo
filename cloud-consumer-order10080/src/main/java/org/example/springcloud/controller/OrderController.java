@@ -25,8 +25,8 @@ import java.util.List;
 @RequestMapping("/consumer")
 @Slf4j
 public class OrderController {
-    //    public static final String PAYMENT_URI = "http://127.0.0.1:8001";
-    public static final String PAYMENT_URI = "http://CLOUD-PAYMENT-SERVICE";
+        public static final String PAYMENT_URI = "http://127.0.0.1:8001";
+//    public static final String PAYMENT_URI = "http://CLOUD-PAYMENT-SERVICE";
 
     @Resource
     private RestTemplate restTemplate;
