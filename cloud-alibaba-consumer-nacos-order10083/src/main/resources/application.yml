@@ -6,8 +6,12 @@ spring:
     name: nacos-order-consumer
   cloud:
     nacos:
+      server-addr: 127.0.0.1:8848
+      username: dev
+      password: 123
       discovery:
-        server-addr: localhost:8848
+        namespace: 1d35246f-5a5b-493c-9373-86a840d67305
+        #        group: DEFAULT_GROUP
 
 
 # 当前为最新GA版，网上暂未找到相关资料配置连接超时等信息，官网也只是提了connectTimeout、readTimeout两个参数并未给出例子，通过查看配置源码调试得出以下用法

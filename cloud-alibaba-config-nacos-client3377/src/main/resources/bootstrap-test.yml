@@ -1,0 +1,12 @@
+spring:
+  cloud:
+    nacos:
+      server-addr: 127.0.0.1:8848
+      username: test
+      password: 123
+      config:
+        file-extension: yml # 指定配置文件后缀名
+        #        name: ${spring.application.name}-${spring.profile.active}.${spring.cloud.nacos.config.file-extension}
+        namespace: cdaab77f-5d20-44c8-bed2-b62440f54c73
+      discovery:
+        namespace: cdaab77f-5d20-44c8-bed2-b62440f54c73
