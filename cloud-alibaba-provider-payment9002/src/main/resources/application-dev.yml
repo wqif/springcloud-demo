@@ -2,7 +2,7 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: localhost:8848
+        server-addr: localhost:1111
         username: dev
         password: 123
         namespace: 1d35246f-5a5b-493c-9373-86a840d67305

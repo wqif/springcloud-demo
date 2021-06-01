@@ -1,0 +1,101 @@
+version: "3.2"
+services:
+  nacos1:
+    image: nacos/nacos-server:${NACOS_VERSION}
+    container_name: nacos-server1
+    networks:
+      net:
+        ipv4_address: 172.29.0.3
+    env_file:
+      - ./env/nacos_cluster.env
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - ./logs/nacos1:/home/nacos/logs
+      - ./init.d/custom.properties:/home/nacos/init.d/custom.properties
+    ports:
+      - "8848:8848"
+      - "9848:9848"
+    depends_on:
+      - mysql
+    restart: on-failure
+    
+  nacos2:
+    image: nacos/nacos-server:${NACOS_VERSION}
+    container_name: nacos-server2
+    networks:
+      net:
+        ipv4_address: 172.29.0.4
+    env_file:
+      - ./env/nacos_cluster.env
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - ./logs/nacos2:/home/nacos/logs
+      - ./init.d/custom.properties:/home/nacos/init.d/custom.properties
+    ports:
+      - "8849:8848"
+      - "9849:9848"
+    depends_on:
+      - mysql
+    restart: on-failure
+    
+  nacos3:
+    image: nacos/nacos-server:${NACOS_VERSION}
+    container_name: nacos-server3
+    networks:
+      net:
+        ipv4_address: 172.29.0.5
+    env_file:
+      - ./env/nacos_cluster.env
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - ./logs/nacos:/home/nacos/logs
+      - ./init.d/custom.properties:/home/nacos/init.d/custom.properties
+    ports:
+      - "8850:8848"
+      - "9850:9848"
+    depends_on:
+      - mysql
+    restart: on-failure
+
+  mysql:
+    container_name: nacos-mysql
+    image: nacos/nacos-mysql:5.7
+    networks:
+      net:
+        ipv4_address: 172.29.0.2
+    env_file:
+      - ./env/mysql.env
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - ./data/mysql:/var/lib/mysql
+    ports:
+      - "33060:3306"
+    restart: always
+    
+  nginx:
+    container_name: nacos-nginx
+    image: nginx:1.20.1
+    networks:
+      net:
+        ipv4_address: 172.29.0.10
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - ./conf/nginx.conf:/etc/nginx/nginx.conf
+      - ./logs/nginx:/var/log/nginx
+    ports:
+      - "1111:80"
+    restart: always
+ 
+networks:
+  net:
+    ipam:
+      config:
+        - subnet: 172.29.0.0/24
+       
+ 
+    

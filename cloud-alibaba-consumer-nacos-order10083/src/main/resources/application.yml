@@ -6,7 +6,7 @@ spring:
     name: nacos-order-consumer
   cloud:
     nacos:
-      server-addr: 127.0.0.1:8848
+      server-addr: localhost:1111
       username: dev
       password: 123
       discovery:

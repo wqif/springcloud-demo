@@ -1,7 +1,8 @@
 spring:
   cloud:
     nacos:
-      server-addr: 127.0.0.1:8848
+      #      server-addr: 192.168.3.17:8848,192.168.3.17:8849,192.168.3.17:8850 # 未使用nginx代理多集群节点
+      server-addr: localhost:1111
       username: dev
       password: 123
       config:
