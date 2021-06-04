@@ -1,0 +1,41 @@
+server:
+  port: 10084
+
+spring:
+  application:
+    name: nacos-order-consumer
+  cloud:
+    nacos:
+      server-addr: localhost:8848
+      username: dev
+      password: 123
+      discovery:
+        namespace: 1d35246f-5a5b-493c-9373-86a840d67305
+        #        group: DEFAULT_GROUP
+    sentinel:
+      transport:
+        dashboard: localhost:8090 # 配置sentinel dashboard地址
+        port: 8719
+
+# 当前为最新GA版，网上暂未找到相关资料配置连接超时等信息，官网也只是提了connectTimeout、readTimeout两个参数并未给出例子，通过查看配置源码调试得出以下用法
+feign:
+  client:
+    config:
+      #      default: # 设置全局
+      #        connectTimeout: 5000 # 设置请求连接超时时间10s，默认为一直阻塞
+      #        readTimeout: 5000 # 设置请求处理超时时间5s，默认为一直阻塞
+      aaa: # 自定义名称，在对应的@FeignClient注解配置contextId为该名称，可用于局部设置
+        connectTimeout: 5000 # 设置请求连接超时时间10s，默认为一直阻塞
+        readTimeout: 5000 # 设置请求处理超时时间5s，默认为一直阻塞
+        loggerLevel: full
+
+logging:
+  level:
+    org.example.cloud.service.PaymentFeignService: debug
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
