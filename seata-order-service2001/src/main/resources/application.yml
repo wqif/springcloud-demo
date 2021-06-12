@@ -1,0 +1,44 @@
+server:
+  port: 2001
+
+spring:
+  application:
+    name: seata-order-service
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+        username: nacos
+        password: nacos
+        namespace: 6dbba839-3243-4708-b3b6-69e3f6462aff
+  datasource:
+    # 当前数据源操作类型
+    type: com.alibaba.druid.pool.DruidDataSource
+    # mysql驱动类
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/seata_order?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=GMT%2B8
+    username: root
+    password: root
+
+feign:
+  client:
+    config:
+      default: # 设置全局
+        connectTimeout: 5000 # 设置请求连接超时时间5s，默认为一直阻塞
+        readTimeout: 5000 # 设置请求处理超时时间5s，默认为一直阻塞
+
+seata:
+  tx-service-group: fsp_tx_group
+  service:
+    vgroup-mapping:
+      fsp_tx_group: default
+    grouplist:
+      default: 127.0.0.1:8091
+
+logging:
+  level:
+    io:
+      seata: info
+
+#mybatis:
+#  mapperLocations: classpath:mapper/*.xml

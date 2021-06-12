@@ -1,0 +1,38 @@
+server:
+  port: 2003
+
+spring:
+  application:
+    name: seata-account-service
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+        username: nacos
+        password: nacos
+        namespace: 6dbba839-3243-4708-b3b6-69e3f6462aff
+  datasource:
+    # 当前数据源操作类型
+    type: com.alibaba.druid.pool.DruidDataSource
+    # mysql驱动类
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/seata_account?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=GMT%2B8
+    username: root
+    password: root
+
+seata:
+  tx-service-group: fsp_tx_group
+  service:
+    vgroup-mapping:
+      fsp_tx_group: default
+    grouplist:
+      default: 127.0.0.1:8091
+
+
+logging:
+  level:
+    io:
+      seata: info
+
+#mybatis:
+#  mapperLocations: classpath:mapper/*.xml
