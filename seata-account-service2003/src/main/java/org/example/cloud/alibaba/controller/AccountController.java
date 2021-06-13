@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import java.math.BigDecimal;
-import java.util.concurrent.TimeUnit;
 
 /**
  * @author wenqifeng
@@ -25,13 +24,13 @@ public class AccountController {
     @GetMapping("/decrease")
     public CommonResult decrease(Long userId, BigDecimal money) {
         log.info("-------> 扣除余额开始。。。");
-        int x=1/0;
-        // 模拟超时异常，全局事务回滚
-        try {
-            TimeUnit.SECONDS.sleep(6);
-        } catch (Exception ignore) {
-
-        }
+//        int x=1/0;
+//        // 模拟超时异常，全局事务回滚
+//        try {
+//            TimeUnit.SECONDS.sleep(6);
+//        } catch (Exception ignore) {
+//
+//        }
         accountService.decrease(userId, money);
         log.info("-------> 扣除余额结束。。。");
         return CommonResult.instance(200, "success");

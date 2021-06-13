@@ -34,7 +34,11 @@ seata:
       fsp_tx_group: default
     grouplist:
       default: 127.0.0.1:8091
-
+  config:
+    nacos:
+      namespace: 6dbba839-3243-4708-b3b6-69e3f6462aff
+      username: nacos
+      password: nacos
 logging:
   level:
     io:
