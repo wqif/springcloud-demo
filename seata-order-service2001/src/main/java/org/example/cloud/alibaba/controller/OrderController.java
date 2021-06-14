@@ -27,4 +27,8 @@ public class OrderController {
         orderService.create(order);
         return CommonResult.instance(200, "订单创建成功");
     }
+    @GetMapping("/snowflake")
+    public void getIdBySnowFlake(){
+        orderService.getIdBySnowFlake();
+    }
 }

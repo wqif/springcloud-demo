@@ -7,9 +7,12 @@ import org.example.cloud.alibaba.domain.Order;
 import org.example.cloud.alibaba.service.AccountService;
 import org.example.cloud.alibaba.service.OrderService;
 import org.example.cloud.alibaba.service.StorageService;
+import org.example.cloud.alibaba.util.IdGeneratorSnowflake;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * @author wenqifeng
@@ -24,6 +27,9 @@ public class OrderServiceImpl implements OrderService {
     private AccountService accountService;
     @Resource
     private StorageService storageService;
+    @Resource
+    private IdGeneratorSnowflake idGeneratorSnowflake;
+
 
     @Override
     @GlobalTransactional(name = "fsp-create-order", rollbackFor = Exception.class)
@@ -49,4 +55,16 @@ public class OrderServiceImpl implements OrderService {
         log.info("-----> 下单结束。。。");
 
     }
+
+    @Override
+    public String getIdBySnowFlake() {
+        ExecutorService threadPool = Executors.newFixedThreadPool(5);
+        for (int i = 0; i < 20; i++) {
+            threadPool.submit(() -> log.info(idGeneratorSnowflake.snowflakeId() + ""));
+        }
+        threadPool.shutdown();
+        return "hello snowflake";
+    }
+
+
 }

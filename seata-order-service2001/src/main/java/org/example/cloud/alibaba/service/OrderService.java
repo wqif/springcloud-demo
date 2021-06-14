@@ -8,4 +8,6 @@ import org.example.cloud.alibaba.domain.Order;
  */
 public interface OrderService {
     void create(Order order);
+
+    String getIdBySnowFlake();
 }
